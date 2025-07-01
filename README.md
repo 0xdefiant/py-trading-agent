@@ -191,7 +191,7 @@ python data/trading-algo.py --dir data/tokenData/aave --strategy bollinger --plo
 ### Chainlink
 **Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/chainlink/Bitstamp_LINKUSD_1h.csv --strategy ema_crossover --plot
+python data/trading-algo.py --csv data/tokenData/chainlink/Bitstamp_LINKBTC_1h.csv --strategy ema_crossover --plot
 ```
 **All Pairs:**
 ```sh
