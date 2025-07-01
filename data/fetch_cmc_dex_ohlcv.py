@@ -2,9 +2,17 @@ import os
 import requests
 import pandas as pd
 import click
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 CMC_DEX_OHLCV_URL = "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical"
+
+def default_time_start():
+    # 24 hours ago, as unix seconds string
+    return str(int((datetime.now(timezone.utc) - timedelta(days=1)).timestamp()))
+
+def default_time_end():
+    # now, as unix seconds string
+    return str(int(datetime.now(timezone.utc).timestamp()))
 
 @click.command()
 @click.option('--api-key', default=None, help='CoinMarketCap API key (or set CMC_API_KEY env variable)')
@@ -13,8 +21,8 @@ CMC_DEX_OHLCV_URL = "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/histor
 @click.option('--network-slug', required=False, help='Network slug (e.g., ethereum)')
 @click.option('--time-period', default='hourly', type=click.Choice(['hourly', 'daily']), show_default=True, help='Time period (hourly or daily)')
 @click.option('--interval', default='1h', help='Interval (e.g., 1h, 1d, 1w)')
-@click.option('--time-start', required=True, help='Start time (unix seconds or ISO8601)')
-@click.option('--time-end', required=True, help='End time (unix seconds or ISO8601)')
+@click.option('--time-start', default=default_time_start, show_default='24h ago (unix seconds)', help='Start time (unix seconds or ISO8601)')
+@click.option('--time-end', default=default_time_end, show_default='now (unix seconds)', help='End time (unix seconds or ISO8601)')
 @click.option('--count', default=None, type=int, help='Limit the number of time periods to return (max 500)')
 @click.option('--aux', default=None, help='Comma-separated list of supplemental data fields to return')
 @click.option('--convert-id', default=None, help='Comma-separated list of currency IDs for conversion')
@@ -88,8 +96,15 @@ def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_pe
     # Ensure column order
     columns = ['unix', 'date', 'symbol', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']
     df = pd.DataFrame(rows, columns=columns)
-    df.to_csv(output, index=False)
-    print(f"Saved {len(df)} rows to {output}")
+    # Ensure output is saved to /data/currentData if just a filename
+    if not os.path.isabs(output) and not os.path.dirname(output):
+        current_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'currentData'))
+        os.makedirs(current_data_dir, exist_ok=True)
+        output_path = os.path.join(current_data_dir, output)
+    else:
+        output_path = output
+    df.to_csv(output_path, index=False)
+    print(f"Saved {len(df)} rows to {output_path}")
 
 if __name__ == "__main__":
     fetch_dex_ohlcv() 

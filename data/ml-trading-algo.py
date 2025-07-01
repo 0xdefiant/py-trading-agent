@@ -123,7 +123,7 @@ def evaluate_model(model, dataloader, device='cpu'):
 @click.option('--epochs', default=10, type=int, help='Number of training epochs')
 @click.option('--lr', default=1e-3, type=float, help='Learning rate')
 @click.option('--device', default='cpu', type=str, help='Device to use (cpu or cuda)')
-@click.option('--save-model', default=None, type=str, help='Path to save trained model weights (e.g., bitcoin_lstm.pth)')
+@click.option('--save-model', default=None, type=str, help='Path or filename to save trained model weights (e.g., bitcoin_lstm.pth)')
 def cli(token, model, seq_len, batch_size, epochs, lr, device, save_model):
     token_dir = os.path.join(os.path.dirname(__file__), 'tokenData', token)
     df = load_token_csvs(token_dir)
@@ -143,8 +143,15 @@ def cli(token, model, seq_len, batch_size, epochs, lr, device, save_model):
     net = train_model(net, train_loader, epochs=epochs, lr=lr, device=device)
     # Save model weights if requested
     if save_model:
-        torch.save(net.state_dict(), save_model)
-        print(f"Model weights saved to {save_model}")
+        # If save_model is just a filename, save to /data/models/<filename>
+        if not os.path.isabs(save_model) and not os.path.dirname(save_model):
+            models_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'models'))
+            os.makedirs(models_dir, exist_ok=True)
+            save_path = os.path.join(models_dir, save_model)
+        else:
+            save_path = save_model
+        torch.save(net.state_dict(), save_path)
+        print(f"Model weights saved to {save_path}")
     print("Evaluating on test set...")
     preds, trues = evaluate_model(net, test_loader, device=device)
     # Optionally: plot predictions vs. true values
