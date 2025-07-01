@@ -1,6 +1,6 @@
 # Trading Algorithm CLI
 
-A modular Python trading algorithm framework for backtesting strategies on historical crypto data.
+A modular Python trading algorithm framework for training and evaluating ML models (LSTM/GRU) on historical crypto data.
 
 ## Requirements
 
@@ -12,126 +12,66 @@ A modular Python trading algorithm framework for backtesting strategies on histo
 
 ## Usage
 
-Run the trading algorithm from the command line using either a single CSV file or a directory of CSVs (for multi-token/pair analysis):
+Run the ML trading algorithm from the command line using a token folder (e.g., bitcoin, ripple, ethereum):
 
-### Single File Example
+### Example: Train LSTM on Bitcoin
 ```sh
-python data/trading-algo.py --csv data/tokenData/bitcoin/Bitstamp_BTCUSD_1h.csv --strategy macd --plot
+python data/ml-trading-algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
 ```
 
-### Directory Example (all pairs for a token)
+### Example: Train GRU on Ethereum
 ```sh
-python data/trading-algo.py --dir data/tokenData/ripple --strategy ema_crossover --fast 10 --slow 30 --stop-loss 0.03 --take-profit 0.07 --position-size 0.5 --plot
+python data/ml-trading-algo.py --token ethereum --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ethereum_gru.pth
 ```
 
 ## CLI Options
 
 | Option                  | Type    | Default      | Description                                                                                   |
 |-------------------------|---------|--------------|-----------------------------------------------------------------------------------------------|
-| --csv PATH              | Path    | (required*)  | Path to a single market data CSV file                                                         |
-| --dir PATH              | Path    | (required*)  | Path to a directory of CSVs for multi-token/pair analysis                                     |
-| --strategy STR          | Choice  | sma_crossover| Trading strategy: sma_crossover, ema_crossover, rsi, macd, bollinger                          |
-| --fast INT              | int     | 10           | Fast window for SMA/EMA (used in crossover strategies)                                        |
-| --slow INT              | int     | 30           | Slow window for SMA/EMA (used in crossover strategies)                                        |
-| --rsi-window INT        | int     | 14           | RSI window (number of periods for RSI calculation)                                            |
-| --rsi-buy INT           | int     | 30           | RSI value below which to generate a buy signal                                                |
-| --rsi-sell INT          | int     | 70           | RSI value above which to generate a sell signal                                               |
-| --bb-window INT         | int     | 20           | Bollinger Bands window (number of periods for SMA/STD)                                        |
-| --bb-num-std FLOAT      | float   | 2.0          | Number of standard deviations for Bollinger Bands                                             |
-| --stop-loss FLOAT       | float   | 0.05         | Stop loss threshold (fraction, e.g. 0.03 = 3% loss triggers exit)                             |
-| --take-profit FLOAT     | float   | 0.1          | Take profit threshold (fraction, e.g. 0.07 = 7% gain triggers exit)                           |
-| --position-size FLOAT   | float   | 1.0          | Fraction of capital to use per trade (0-1, e.g. 0.5 = 50% of capital per trade)               |
-| --plot / --no-plot      | flag    | --plot       | Show plots of results (equity curve, buy/sell signals)                                        |
-| --initial-balance FLOAT | float   | 10000.0      | Initial balance for backtest simulation                                                       |
-
-*Either --csv or --dir is required. If both are provided, --dir takes priority.
-
-### Advanced Option Details
-
-- **--stop-loss FLOAT**: Sets the maximum loss per trade as a fraction of entry price. For example, `--stop-loss 0.03` means a trade will be closed if it loses 3% or more.
-- **--take-profit FLOAT**: Sets the profit target per trade as a fraction of entry price. For example, `--take-profit 0.07` means a trade will be closed if it gains 7% or more.
-- **--position-size FLOAT**: Controls what fraction of your simulated capital is used for each trade. `--position-size 1.0` means all-in, `0.5` means half your capital per trade. Useful for risk management and portfolio simulation.
-- **--fast / --slow**: Used for moving average crossovers (SMA/EMA). `--fast` is the short window, `--slow` is the long window.
-- **--rsi-window / --rsi-buy / --rsi-sell**: Used for RSI-based strategies. Adjust these to tune sensitivity and thresholds for overbought/oversold signals.
-- **--bb-window / --bb-num-std**: Used for Bollinger Bands. Adjust window and number of standard deviations to control band width and signal frequency.
-- **--plot / --no-plot**: By default, plots are shown. Use `--no-plot` to suppress plots (useful for batch runs or automation).
-- **--initial-balance**: Set your starting simulated capital for the backtest.
-
-You can combine these options to fine-tune your strategy and risk management for any token or trading pair.
+| --token TOKEN           | str     | (required)   | Token folder name (e.g., bitcoin, ripple, ethereum)                                           |
+| --model [lstm|gru]      | str     | lstm         | Model type to use (lstm or gru)                                                               |
+| --seq-len INT           | int     | 24           | Sequence length (number of hours for input window)                                            |
+| --batch-size INT        | int     | 64           | Batch size for training                                                                       |
+| --epochs INT            | int     | 10           | Number of training epochs                                                                     |
+| --lr FLOAT              | float   | 0.001        | Learning rate                                                                                 |
+| --device [cpu|cuda]     | str     | cpu          | Device to use (cpu or cuda)                                                                   |
+| --save-model PATH       | str     | None         | Path or filename to save trained model weights (e.g., bitcoin_lstm.pth)                       |
 
 ## Example Commands
 
-# --- Basic Strategy Examples ---
+# --- Basic Model Training Examples ---
 
-# SMA Crossover on Bitcoin (single file)
+# LSTM on Bitcoin
 ```sh
-python data/trading-algo.py --csv data/tokenData/bitcoin/Bitstamp_BTCUSD_1h.csv --strategy sma_crossover --fast 10 --slow 30 --plot
+python data/ml-trading-algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
 ```
 
-# EMA Crossover on all Ripple pairs (directory)
+# GRU on Ripple
 ```sh
-python data/trading-algo.py --dir data/tokenData/ripple --strategy ema_crossover --fast 12 --slow 26 --plot
+python data/ml-trading-algo.py --token ripple --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ripple_gru.pth
 ```
 
-# RSI Strategy on Bitcoin (custom thresholds)
+# LSTM on Ethereum (custom sequence length and epochs)
 ```sh
-python data/trading-algo.py --csv data/tokenData/bitcoin/Bitstamp_BTCUSD_1h.csv --strategy rsi --rsi-window 14 --rsi-buy 25 --rsi-sell 75 --plot
+python data/ml-trading-algo.py --token ethereum --model lstm --seq-len 48 --batch-size 32 --epochs 20 --lr 0.0005 --device cpu --save-model ethereum_lstm.pth
 ```
 
-# MACD on all Ethereum pairs
+# GRU on Uniswap (using GPU if available)
 ```sh
-python data/trading-algo.py --dir data/tokenData/ethereum --strategy macd --plot
+python data/ml-trading-algo.py --token uniswap --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cuda --save-model uniswap_gru.pth
 ```
 
-# Bollinger Bands on Uniswap (custom window and std)
+# --- Save Model Example ---
+
+# Save trained LSTM model for Aave
 ```sh
-python data/trading-algo.py --csv data/tokenData/uniswap/Bitstamp_UNIUSD_1h.csv --strategy bollinger --bb-window 15 --bb-num-std 2.5 --plot
-```
-
-# --- Advanced Risk Management Examples ---
-
-# SMA Crossover with stop-loss and take-profit
-```sh
-python data/trading-algo.py --csv data/tokenData/bitcoin/Bitstamp_BTCUSD_1h.csv --strategy sma_crossover --fast 10 --slow 30 --stop-loss 0.02 --take-profit 0.05 --plot
-```
-
-# EMA Crossover with position sizing (50% capital per trade)
-```sh
-python data/trading-algo.py --dir data/tokenData/chainlink --strategy ema_crossover --fast 8 --slow 21 --position-size 0.5 --plot
-```
-
-# MACD with custom initial balance
-```sh
-python data/trading-algo.py --csv data/tokenData/aave/Bitstamp_AAVEBTC_1h.csv --strategy macd --initial-balance 50000 --plot
-```
-
-# --- Batch/Automation and No-Plot Examples ---
-
-# Run RSI on all tokens in a folder, no plots (for automation)
-```sh
-python data/trading-algo.py --dir data/tokenData/ethereum --strategy rsi --no-plot
-```
-
-# Run Bollinger Bands on all Uniswap pairs, no plots, custom risk
-```sh
-python data/trading-algo.py --dir data/tokenData/uniswap --strategy bollinger --bb-window 20 --bb-num-std 2 --stop-loss 0.03 --take-profit 0.08 --position-size 0.3 --no-plot
-```
-
-# --- Multi-Token Batch Example (run for each token folder) ---
-# (You can run this command for each token folder to backtest all pairs for that token)
-```sh
-python data/trading-algo.py --dir data/tokenData/bitcoin --strategy macd --no-plot
-python data/trading-algo.py --dir data/tokenData/ripple --strategy macd --no-plot
-python data/trading-algo.py --dir data/tokenData/ethereum --strategy macd --no-plot
-python data/trading-algo.py --dir data/tokenData/uniswap --strategy macd --no-plot
-python data/trading-algo.py --dir data/tokenData/aave --strategy macd --no-plot
-python data/trading-algo.py --dir data/tokenData/chainlink --strategy macd --no-plot
+python data/ml-trading-algo.py --token aave --model lstm --save-model aave_lstm.pth
 ```
 
 # --- Custom Example: All-in-one ---
-# (EMA crossover, 30% capital per trade, stop-loss 4%, take-profit 10%, no plots, $25,000 initial balance)
+# (GRU, 48-hour window, 30 epochs, batch size 128, learning rate 0.0005, save model)
 ```sh
-python data/trading-algo.py --dir data/tokenData/bitcoin --strategy ema_crossover --fast 10 --slow 30 --stop-loss 0.04 --take-profit 0.1 --position-size 0.3 --initial-balance 25000 --no-plot
+python data/ml-trading-algo.py --token bitcoin --model gru --seq-len 48 --batch-size 128 --epochs 30 --lr 0.0005 --save-model bitcoin_gru.pth
 ```
 
 ## Token Examples
@@ -139,67 +79,43 @@ python data/trading-algo.py --dir data/tokenData/bitcoin --strategy ema_crossove
 Below are example commands for each token available in `/data/tokenData/`:
 
 ### Bitcoin
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/bitcoin/Bitstamp_BTCUSD_1h.csv --strategy macd --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/bitcoin --strategy ema_crossover --plot
+python data/ml-trading-algo.py --token bitcoin --model lstm --save-model bitcoin_lstm.pth
 ```
 
 ### Ripple (XRP)
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/ripple/Bitstamp_XRPUSD_1h.csv --strategy rsi --rsi-window 14 --rsi-buy 30 --rsi-sell 70 --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/ripple --strategy bollinger --bb-window 20 --bb-num-std 2 --plot
+python data/ml-trading-algo.py --token ripple --model gru --save-model ripple_gru.pth
 ```
 
 ### Ethereum
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/ethereum/Gemini_ETHUSD_1h.csv --strategy macd --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/ethereum --strategy ema_crossover --plot
+python data/ml-trading-algo.py --token ethereum --model lstm --save-model ethereum_lstm.pth
 ```
 
 ### Uniswap
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/uniswap/Bitstamp_UNIUSD_1h.csv --strategy sma_crossover --fast 10 --slow 30 --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/uniswap --strategy rsi --plot
+python data/ml-trading-algo.py --token uniswap --model gru --save-model uniswap_gru.pth
 ```
 
 ### Aave
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/aave/Bitstamp_AAVEBTC_1h.csv --strategy macd --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/aave --strategy bollinger --plot
+python data/ml-trading-algo.py --token aave --model lstm --save-model aave_lstm.pth
 ```
 
 ### Chainlink
-**Single File:**
 ```sh
-python data/trading-algo.py --csv data/tokenData/chainlink/Bitstamp_LINKBTC_1h.csv --strategy ema_crossover --plot
-```
-**All Pairs:**
-```sh
-python data/trading-algo.py --dir data/tokenData/chainlink --strategy sma_crossover --plot
+python data/ml-trading-algo.py --token chainlink --model gru --save-model chainlink_gru.pth
 ```
 
 ## Notes
-- Plots will display the equity curve and buy/sell signals.
-- Results are printed as summary statistics (final balance, total return, Sharpe ratio, max drawdown).
-- You can extend the code to add more strategies or analytics.
-- All token data is now under `/data/tokenData/` with a subfolder for each token (e.g., `/data/tokenData/bitcoin/`, `/data/tokenData/ripple/`, etc.). # py-trading-agent
+- The script will automatically load and concatenate all CSVs in the specified token folder under `/data/tokenData/<token>/`.
+- Model weights are saved to `/data/models/` if only a filename is provided for `--save-model`.
+- The script prints training loss per epoch and test MSE after training.
+- If matplotlib is installed, a plot of true vs. predicted values is shown after evaluation.
+- You can tune hyperparameters (sequence length, batch size, epochs, learning rate) for best results.
+- For more options, run:
+
+```bash
+python data/ml-trading-algo.py --help
+```

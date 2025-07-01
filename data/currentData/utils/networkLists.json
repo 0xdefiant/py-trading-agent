@@ -1,0 +1,256 @@
+{
+    "data": [
+        {
+            "id": 260,
+            "name": "Peaq",
+            "network_slug": "Peaq"
+        },
+        {
+            "id": 259,
+            "name": "Apertum",
+            "network_slug": "Apertum"
+        },
+        {
+            "id": 257,
+            "name": "Lumia",
+            "network_slug": "Lumia"
+        },
+        {
+            "id": 256,
+            "name": "Sophon",
+            "network_slug": "Sophon"
+        },
+        {
+            "id": 255,
+            "name": "Vector Smart Chain",
+            "network_slug": "Vector Smart Chain"
+        },
+        {
+            "id": 250,
+            "name": "Etherlink",
+            "network_slug": "Etherlink"
+        },
+        {
+            "id": 248,
+            "name": "HyperEVM",
+            "network_slug": "HyperEVM"
+        },
+        {
+            "id": 247,
+            "name": "Abstract Chain",
+            "network_slug": "Abstract Chain"
+        },
+        {
+            "id": 246,
+            "name": "Unichain",
+            "network_slug": "Unichain"
+        },
+        {
+            "id": 245,
+            "name": "Story",
+            "network_slug": "Story"
+        },
+        {
+            "id": 241,
+            "name": "Bera Chain",
+            "network_slug": "Bera Chain"
+        },
+        {
+            "id": 239,
+            "name": "Soneium",
+            "network_slug": "Soneium"
+        },
+        {
+            "id": 238,
+            "name": "DuckChain",
+            "network_slug": "DuckChain"
+        },
+        {
+            "id": 237,
+            "name": "Sonic",
+            "network_slug": "Sonic"
+        },
+        {
+            "id": 235,
+            "name": "ONUS",
+            "network_slug": "ONUS"
+        },
+        {
+            "id": 234,
+            "name": "ApeChain",
+            "network_slug": "ApeChain"
+        },
+        {
+            "id": 233,
+            "name": "World Chain Mainnet",
+            "network_slug": "World Chain Mainnet"
+        },
+        {
+            "id": 232,
+            "name": "Chiliz Chain",
+            "network_slug": "Chiliz Chain"
+        },
+        {
+            "id": 231,
+            "name": "Cronos zkEVM Mainnet",
+            "network_slug": "Cronos zkEVM Mainnet"
+        },
+        {
+            "id": 229,
+            "name": "IOTA EVM",
+            "network_slug": "IOTA EVM"
+        },
+        {
+            "id": 226,
+            "name": "Sei v2",
+            "network_slug": "Sei v2"
+        },
+        {
+            "id": 225,
+            "name": "Taiko",
+            "network_slug": "Taiko"
+        },
+        {
+            "id": 224,
+            "name": "BounceBit",
+            "network_slug": "BounceBit"
+        },
+        {
+            "id": 223,
+            "name": "Haqq",
+            "network_slug": "Haqq"
+        },
+        {
+            "id": 222,
+            "name": "Shido Network",
+            "network_slug": "Shido Network"
+        },
+        {
+            "id": 221,
+            "name": "Venom",
+            "network_slug": "Venom"
+        },
+        {
+            "id": 220,
+            "name": "Saakuru",
+            "network_slug": "Saakuru"
+        },
+        {
+            "id": 218,
+            "name": "Mode",
+            "network_slug": "Mode"
+        },
+        {
+            "id": 217,
+            "name": "B² Network",
+            "network_slug": "B² Network"
+        },
+        {
+            "id": 216,
+            "name": "X Layer",
+            "network_slug": "X Layer"
+        },
+        {
+            "id": 215,
+            "name": "Degen Chain",
+            "network_slug": "Degen Chain"
+        },
+        {
+            "id": 214,
+            "name": "RSS3 VSL",
+            "network_slug": "RSS VSL"
+        },
+        {
+            "id": 212,
+            "name": "Merlin",
+            "network_slug": "Merlin Chain"
+        },
+        {
+            "id": 211,
+            "name": "Zeta",
+            "network_slug": "Zeta"
+        },
+        {
+            "id": 210,
+            "name": "Blast",
+            "network_slug": "Blast"
+        },
+        {
+            "id": 209,
+            "name": "Beam",
+            "network_slug": "Beam"
+        },
+        {
+            "id": 208,
+            "name": "ZKFair",
+            "network_slug": "ZKFair"
+        },
+        {
+            "id": 205,
+            "name": "Scroll",
+            "network_slug": "Scroll"
+        },
+        {
+            "id": 204,
+            "name": "Manta Pacific",
+            "network_slug": "Manta Pacific"
+        },
+        {
+            "id": 201,
+            "name": "Shibarium",
+            "network_slug": "Shibarium"
+        },
+        {
+            "id": 200,
+            "name": "opBNB",
+            "network_slug": "opBNB"
+        },
+        {
+            "id": 199,
+            "name": "Base",
+            "network_slug": "Base"
+        },
+        {
+            "id": 198,
+            "name": "Linea",
+            "network_slug": "Linea"
+        },
+        {
+            "id": 197,
+            "name": "Neon EVM",
+            "network_slug": "Neon EVM"
+        },
+        {
+            "id": 195,
+            "name": "Mantle",
+            "network_slug": "Mantle"
+        },
+        {
+            "id": 194,
+            "name": "Starknet",
+            "network_slug": "Starknet"
+        },
+        {
+            "id": 189,
+            "name": "PulseChain",
+            "network_slug": "PulseChain"
+        },
+        {
+            "id": 188,
+            "name": "Sei Network",
+            "network_slug": "Sei Network"
+        },
+        {
+            "id": 186,
+            "name": "EOS EVM",
+            "network_slug": "EOS EVM"
+        }
+    ],
+    "status": {
+        "timestamp": "2025-07-01T17:01:58.786Z",
+        "error_code": "0",
+        "error_message": "",
+        "elapsed": 4,
+        "credit_count": 1
+    }
+}

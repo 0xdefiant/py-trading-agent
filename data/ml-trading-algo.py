@@ -11,12 +11,9 @@ import click
 # Tips for Efficient and Accurate ML Training
 # =========================
 # - Use more historical data for training (longer timeframes, more tokens/pairs).
-# - Normalize input features (already done for close price).
 # - Tune hyperparameters: seq_len, hidden_size, num_layers, batch_size, learning rate, epochs.
 # - Try both LSTM and GRU, and compare validation/test MSE.
 # - Use early stopping or validation loss to avoid overfitting.
-# - Use GPU (device='cuda') for faster training if available. NOT AVAILABLE ON MY MACHINE
-# - Save your best model weights for later inference or deployment.
 
 # =========================
 # 1. Data Loading & Preprocessing
