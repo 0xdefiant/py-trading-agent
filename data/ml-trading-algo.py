@@ -112,16 +112,7 @@ def evaluate_model(model, dataloader, device='cpu'):
 # =========================
 # 4. CLI Entry Point
 # =========================
-@click.command()
-@click.option('--token', required=True, type=str, help='Token folder name (e.g., bitcoin, ripple, ethereum)')
-@click.option('--model', default='lstm', type=click.Choice(['lstm', 'gru']), help='Model type to use (lstm or gru)')
-@click.option('--seq-len', default=24, type=int, help='Sequence length (number of hours for input window)')
-@click.option('--batch-size', default=64, type=int, help='Batch size for training')
-@click.option('--epochs', default=10, type=int, help='Number of training epochs')
-@click.option('--lr', default=1e-3, type=float, help='Learning rate')
-@click.option('--device', default='cpu', type=str, help='Device to use (cpu or cuda)')
-@click.option('--save-model', default=None, type=str, help='Path or filename to save trained model weights (e.g., bitcoin_lstm.pth)')
-def cli(token, model, seq_len, batch_size, epochs, lr, device, save_model):
+def train_token(token, model='lstm', seq_len=24, batch_size=64, epochs=10, lr=1e-3, device='cpu', save_model=None, plot=True):
     token_dir = os.path.join(os.path.dirname(__file__), 'tokenData', token)
     df = load_token_csvs(token_dir)
     # Normalize close price
@@ -152,16 +143,58 @@ def cli(token, model, seq_len, batch_size, epochs, lr, device, save_model):
     print("Evaluating on test set...")
     preds, trues = evaluate_model(net, test_loader, device=device)
     # Optionally: plot predictions vs. true values
-    try:
-        import matplotlib.pyplot as plt
-        plt.figure(figsize=(12, 5))
-        plt.plot(trues, label='True')
-        plt.plot(preds, label='Predicted')
-        plt.title(f'{model.upper()} Prediction on {token}')
-        plt.legend()
-        plt.show()
-    except ImportError:
-        pass
+    if plot:
+        try:
+            import matplotlib.pyplot as plt
+            plt.figure(figsize=(12, 5))
+            plt.plot(trues, label='True')
+            plt.plot(preds, label='Predicted')
+            plt.title(f'{model.upper()} Prediction on {token}')
+            plt.legend()
+            plt.show()
+        except ImportError:
+            pass
+    return net, preds, trues
+
+@click.group()
+def main():
+    pass
+
+@main.command()
+@click.option('--token', required=True, type=str, help='Token folder name (e.g., bitcoin, ripple, ethereum)')
+@click.option('--model', default='lstm', type=click.Choice(['lstm', 'gru']), help='Model type to use (lstm or gru)')
+@click.option('--seq-len', default=24, type=int, help='Sequence length (number of hours for input window)')
+@click.option('--batch-size', default=64, type=int, help='Batch size for training')
+@click.option('--epochs', default=10, type=int, help='Number of training epochs')
+@click.option('--lr', default=1e-3, type=float, help='Learning rate')
+@click.option('--device', default='cpu', type=str, help='Device to use (cpu or cuda)')
+@click.option('--save-model', default=None, type=str, help='Path or filename to save trained model weights (e.g., bitcoin_lstm.pth)')
+def train(token, model, seq_len, batch_size, epochs, lr, device, save_model):
+    train_token(token, model=model, seq_len=seq_len, batch_size=batch_size, epochs=epochs, lr=lr, device=device, save_model=save_model, plot=True)
+
+@main.command('train-all')
+@click.option('--model', default='lstm', type=click.Choice(['lstm', 'gru']), help='Model type to use (lstm or gru)')
+@click.option('--seq-len', default=24, type=int, help='Sequence length (number of hours for input window)')
+@click.option('--batch-size', default=64, type=int, help='Batch size for training')
+@click.option('--epochs', default=10, type=int, help='Number of training epochs')
+@click.option('--lr', default=1e-3, type=float, help='Learning rate')
+@click.option('--device', default='cpu', type=str, help='Device to use (cpu or cuda)')
+@click.option('--save-model', default=None, type=str, help='Path or filename to save trained model weights (e.g., bitcoin_lstm.pth)')
+def train_all(model, seq_len, batch_size, epochs, lr, device, save_model):
+    token_data_dir = os.path.join(os.path.dirname(__file__), 'tokenData')
+    token_folders = [f for f in os.listdir(token_data_dir) if os.path.isdir(os.path.join(token_data_dir, f))]
+    for token in token_folders:
+        print(f"\n=== Training on {token} ===")
+        save_model_name = None
+        if save_model:
+            # Save each model with token name prefix
+            base, ext = os.path.splitext(save_model)
+            save_model_name = f"{token}_{model}{ext if ext else '.pth'}"
+        try:
+            train_token(token, model=model, seq_len=seq_len, batch_size=batch_size, epochs=epochs, lr=lr, device=device, save_model=save_model_name, plot=False)
+        except Exception as e:
+            print(f"Error training {token}: {e}")
+    print("\nAll tokens processed.")
 
 if __name__ == "__main__":
-    cli()
+    main()
