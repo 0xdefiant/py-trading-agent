@@ -5,8 +5,30 @@ import click
 from datetime import datetime, timezone, timedelta
 import numpy as np
 from technical_indicators import add_features
+import json
+
+def get_current_eth_price():
+    # Use CoinGecko public API to get current ETH price in USD
+    try:
+        resp = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
+        resp.raise_for_status()
+        data = resp.json()
+        return float(data['ethereum']['usd'])
+    except Exception as e:
+        print(f"Warning: Could not fetch ETH price from CoinGecko: {e}")
+        return None
 
 CMC_DEX_OHLCV_URL = "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical"
+
+# Load DexPairs.json
+DEX_PAIRS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DexPairs.json'))
+def load_dex_pairs():
+    try:
+        with open(DEX_PAIRS_PATH, 'r') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Warning: Could not load DexPairs.json: {e}")
+        return {}
 
 def default_time_start():
     # 128 hours ago, as unix seconds string
@@ -18,8 +40,10 @@ def default_time_end():
 
 @click.command()
 @click.option('--api-key', default=None, help='CoinMarketCap API key (or set CMC_API_KEY env variable)')
-@click.option('--contract-address', required=False, help='DEX pair contract address')
-@click.option('--network-id', default=199, required=False, help='Network ID (e.g., 1 for Ethereum mainnet)')
+@click.option('--contract-address', required=False, help='DEX pair contract address (overrides --dex/--pair)')
+@click.option('--dex', required=False, help='DEX/network name as in DexPairs.json (e.g., eth, base, arbitrum, uni, bsc-pancake, optimism)')
+@click.option('--pair', required=False, help='Trading pair as in DexPairs.json (e.g., btc/eth, eth/usdc, etc.)')
+@click.option('--network-id', default=1, required=False, help='Network ID (e.g., 1 for Ethereum mainnet)')
 @click.option('--network-slug', required=False, help='Network slug (e.g., ethereum)')
 @click.option('--time-period', default='hourly', type=click.Choice(['hourly', 'daily']), show_default=True, help='Time period (hourly or daily)')
 @click.option('--interval',
@@ -35,10 +59,27 @@ def default_time_end():
 @click.option('--convert-id', default=None, help='Comma-separated list of currency IDs for conversion')
 @click.option('--skip-invalid', default=True, is_flag=True, show_default=True, help='Skip invalid lookups (default: true)')
 @click.option('--reverse-order', default=False, is_flag=True, show_default=True, help='Reverse the order of the spot pair (default: false)')
-def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_period, interval, time_start, time_end, count, aux, convert_id, skip_invalid, reverse_order):
+def fetch_dex_ohlcv(api_key, contract_address, dex, pair, network_id, network_slug, time_period, interval, time_start, time_end, count, aux, convert_id, skip_invalid, reverse_order):
     api_key = api_key or os.environ.get('CMC_API_KEY')
     if not api_key:
         raise click.ClickException('CoinMarketCap API key required. Use --api-key or set CMC_API_KEY env variable.')
+    # Load contract address from DexPairs.json if not provided
+    dex_network_id = None
+    if not contract_address and dex and pair:
+        dex_pairs = load_dex_pairs()
+        dex_info = dex_pairs.get(dex)
+        if not dex_info:
+            print(f"DEX/network '{dex}' not found in DexPairs.json. Available: {list(dex_pairs.keys())}")
+            return
+        pairs = dex_info.get('pairs', {})
+        contract_address = pairs.get(pair)
+        dex_network_id = dex_info.get('network_id')
+        if not contract_address:
+            print(f"Pair '{pair}' not found for DEX '{dex}'. Available pairs: {list(pairs.keys())}")
+            return
+        print(f"Using contract address for {dex} {pair}: {contract_address}")
+        if not network_id and dex_network_id:
+            network_id = dex_network_id
     params = {
         'time_period': time_period,
         'interval': interval,
@@ -60,6 +101,8 @@ def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_pe
     if convert_id:
         params['convert_id'] = convert_id
     headers = {'X-CMC_PRO_API_KEY': api_key}
+    # --- Fetch normal order ---
+    params['reverse_order'] = 'false'
     print(f"Requesting DEX OHLCV with params: {params}")
     resp = requests.get(CMC_DEX_OHLCV_URL, params=params, headers=headers)
     resp.raise_for_status()
@@ -71,52 +114,45 @@ def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_pe
     base_symbol = data[0].get('base_asset_symbol', 'BASE')
     quote_symbol = data[0].get('quote_asset_symbol', 'QUOTE')
     symbol = f"{base_symbol}/{quote_symbol}"
-    # --- New: Determine output filename from API metadata ---
     name = data[0].get('name', 'pair')
     network_id = data[0].get('network_id', 'net')
-    # Find the most recent time_close in quotes
     most_recent_time_close = max(q.get('time_close', '') for q in quotes if 'time_close' in q)
-    # Clean up name for filename (remove slashes and spaces)
     safe_name = name.replace('/', '_').replace(' ', '_')
-    # Clean up time_close for filename (remove colons and dashes)
     safe_time_close = most_recent_time_close.replace(':', '').replace('-', '').replace('T', '_').replace('Z', '')
     output_filename = f"{safe_name}_{network_id}_{safe_time_close}.csv"
+    eth_price = get_current_eth_price()
+    if eth_price is None or eth_price <= 0:
+        print('Could not fetch a valid ETH price. ETH Volume column will be 0.')
     rows = []
     for q in quotes:
-        quote = q['quote'][0]  # Only one quote per time period
-        # Convert ISO8601 to unix seconds and to 'YYYY-MM-DD HH:MM:SS'
+        quote = q['quote'][0]
         time_open = q['time_open']
         try:
             dt = datetime.fromisoformat(time_open.replace('Z', '+00:00'))
             unix = int(dt.timestamp())
-            date_str = dt.strftime('%Y-%m-%d %H:%M:%S')
         except Exception:
             unix = ''
-            date_str = time_open
         def fmt(val):
             try:
-                return f"{float(val):.6f}"
+                return float(val)
             except Exception:
-                return val
+                return 0.0
+        price = fmt(quote['close'])
+        usd_volume = fmt(quote.get('volume', 0.0))
+        base_volume = usd_volume / price if price > 0 else 0.0
+        quote_volume = usd_volume
+        weth_volume = usd_volume / eth_price if eth_price and eth_price > 0 else 0.0
         rows.append({
             'unix': unix,
-            'date': date_str,
-            'symbol': symbol,
             'open': fmt(quote['open']),
             'high': fmt(quote['high']),
             'low': fmt(quote['low']),
-            'close': fmt(quote['close']),
-            f'Volume {base_symbol}': fmt(quote.get('volume', 0.0)),
-            f'Volume {quote_symbol}': fmt(0.0)  # Not available from API
+            'close': price,
+            f'{base_symbol} Volume': base_volume,
+            f'{quote_symbol} Volume': quote_volume,
+            'WETH Volume': weth_volume
         })
-    # Ensure column order
-    columns = ['unix', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']
-    df = pd.DataFrame(rows, columns=['unix', 'date', 'symbol', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}'])
-    # Drop 'date' and 'symbol' columns
-    df = df.drop(columns=['date', 'symbol'], errors='ignore')
-    # Convert price columns to float
-    for col in ['open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
+    df = pd.DataFrame(rows)
     # Sort so most recent is at the top
     df = df.sort_values('unix', ascending=False).reset_index(drop=True)
     # --- Add technical indicators ---
@@ -132,6 +168,12 @@ def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_pe
     for col in df.columns:
         if col != 'unix' and pd.api.types.is_numeric_dtype(df[col]):
             df[col] = df[col].map(lambda x: f"{x:.6f}" if pd.notnull(x) else "0.000000")
+    # Only keep unix, open, high, low, close, <base_symbol> Volume, <quote_symbol> Volume, WETH Volume, and technical indicators
+    keep_cols = ['unix', 'open', 'high', 'low', 'close', f'{base_symbol} Volume', f'{quote_symbol} Volume', 'WETH Volume']
+    tech_cols = [c for c in df.columns if c not in keep_cols]
+    df = df[keep_cols + tech_cols]
+    # Drop duplicate columns, keeping the first occurrence (especially for 'WETH Volume')
+    df = df.loc[:, ~df.columns.duplicated()]
     current_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'currentData'))
     os.makedirs(current_data_dir, exist_ok=True)
     output_path = os.path.join(current_data_dir, output_filename)
