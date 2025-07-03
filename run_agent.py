@@ -21,10 +21,10 @@ from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
+from coinbase_agentkit.action_providers.compound.compound_action_provider import CompoundActionProvider
 
 # Configure a file to persist the agent's CDP API Wallet Data.
 load_dotenv()
-
 
 def initialize_agent(config: CdpEvmServerWalletProviderConfig):
     """Initialize the agent with CDP Agentkit.
@@ -62,6 +62,7 @@ def initialize_agent(config: CdpEvmServerWalletProviderConfig):
                 wallet_action_provider(),
                 weth_action_provider(),
                 allora_action_provider(),
+                CompoundActionProvider(),
             ],
         )
     )
