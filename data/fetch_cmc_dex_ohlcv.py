@@ -3,12 +3,14 @@ import requests
 import pandas as pd
 import click
 from datetime import datetime, timezone, timedelta
+import numpy as np
+from technical_indicators import add_features
 
 CMC_DEX_OHLCV_URL = "https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical"
 
 def default_time_start():
-    # 24 hours ago, as unix seconds string
-    return str(int((datetime.now(timezone.utc) - timedelta(days=2)).timestamp()))
+    # 128 hours ago, as unix seconds string
+    return str(int((datetime.now(timezone.utc) - timedelta(hours=128)).timestamp()))
 
 def default_time_end():
     # now, as unix seconds string
@@ -17,7 +19,7 @@ def default_time_end():
 @click.command()
 @click.option('--api-key', default=None, help='CoinMarketCap API key (or set CMC_API_KEY env variable)')
 @click.option('--contract-address', required=False, help='DEX pair contract address')
-@click.option('--network-id', required=False, help='Network ID (e.g., 1 for Ethereum mainnet)')
+@click.option('--network-id', default=199, required=False, help='Network ID (e.g., 1 for Ethereum mainnet)')
 @click.option('--network-slug', required=False, help='Network slug (e.g., ethereum)')
 @click.option('--time-period', default='hourly', type=click.Choice(['hourly', 'daily']), show_default=True, help='Time period (hourly or daily)')
 @click.option('--interval',
@@ -26,9 +28,9 @@ def default_time_end():
     show_default=True,
     help='Interval for sampling time_period. Valid values: 1m, 5m, 15m, 30m, 1h, 4h, 8h, 12h, daily, weekly, monthly.'
 )
-@click.option('--time-start', default=default_time_start, show_default='24h ago (unix seconds)', help='Start time (unix seconds or ISO8601)')
+@click.option('--time-start', default=default_time_start, show_default='128h ago (unix seconds)', help='Start time (unix seconds or ISO8601)')
 @click.option('--time-end', default=default_time_end, show_default='now (unix seconds)', help='End time (unix seconds or ISO8601)')
-@click.option('--count', default=100, type=int, help='Limit the number of time periods to return (max 500)')
+@click.option('--count', default=128, type=int, help='Limit the number of time periods to return (max 500)')
 @click.option('--aux', default=None, help='Comma-separated list of supplemental data fields to return')
 @click.option('--convert-id', default=None, help='Comma-separated list of currency IDs for conversion')
 @click.option('--skip-invalid', default=True, is_flag=True, show_default=True, help='Skip invalid lookups (default: true)')
@@ -108,8 +110,28 @@ def fetch_dex_ohlcv(api_key, contract_address, network_id, network_slug, time_pe
             f'Volume {quote_symbol}': fmt(0.0)  # Not available from API
         })
     # Ensure column order
-    columns = ['unix', 'date', 'symbol', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']
-    df = pd.DataFrame(rows, columns=columns)
+    columns = ['unix', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']
+    df = pd.DataFrame(rows, columns=['unix', 'date', 'symbol', 'open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}'])
+    # Drop 'date' and 'symbol' columns
+    df = df.drop(columns=['date', 'symbol'], errors='ignore')
+    # Convert price columns to float
+    for col in ['open', 'high', 'low', 'close', f'Volume {base_symbol}', f'Volume {quote_symbol}']:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+    # Sort so most recent is at the top
+    df = df.sort_values('unix', ascending=False).reset_index(drop=True)
+    # --- Add technical indicators ---
+    df = add_features(df)
+    # Only drop the first max_lookback rows (168 for weekly rolling features)
+    max_lookback = 168
+    if len(df) > max_lookback:
+        df = df.iloc[max_lookback:].reset_index(drop=True)
+    # Optionally, drop rows where the target (e.g., 'close', 'return', 'log_return') is still NaN
+    df = df[df['close'].notna() & df['return'].notna() & df['log_return'].notna()]
+    df = df.reset_index(drop=True)
+    # Format all numeric columns (except unix) to 6 decimal places and fill missing with 0.000000
+    for col in df.columns:
+        if col != 'unix' and pd.api.types.is_numeric_dtype(df[col]):
+            df[col] = df[col].map(lambda x: f"{x:.6f}" if pd.notnull(x) else "0.000000")
     current_data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'currentData'))
     os.makedirs(current_data_dir, exist_ok=True)
     output_path = os.path.join(current_data_dir, output_filename)

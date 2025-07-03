@@ -1,0 +1,29 @@
+{
+    "btc/eth": "0xCBCdF9626bC03E24f779434178A73a0B4bad62eD",
+    "btc/usdt": "0x9Db9e0e53058C89e5B94e29621a205198648425B",
+    "btc/usdc": "0x99ac8cA7087fA4A2A1FB6357269965A2014ABc35",
+    "eth/usdc": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+    "link/eth": "0xa6Cc3C2531FdaA6Ae1A3CA84c2855806728693e8",
+    "uni/usdt": "0x3470447f3CecfFAc709D3e783A307790b0208d60",
+    "uni/eth": "0x1d42064Fc4Beb5F8aAF85F4617AE8b3b5B8Bd801",
+    "usdc/cbeth": "0x4548280AC92507C9092a511C7396Cbea78FA9E49",
+    "uni-chain":
+        {
+            "usdc/eth": "0x65081CB48d74A32e9CCfED75164b8c09972DBcF1",
+            "uni/eth": "0xd49174DbA635489C67fA628864C2D0d04824eBd8",
+        },
+    "base":
+        {
+            "eth/usdc": "0xd0b53D9277642d899DF5C87A3966A349A798F224",
+        },
+    "arbitrum":
+        {
+            "wbtc/eth": "0x2f5e87C9312fa29aed5c179E456625D79015299c",
+        },
+    "optimism":
+        {
+            "eth/wbtc": "0x85C31FFA3706d1cce9d525a00f1C7D4A2911754c",
+        },
+    "b"
+
+}

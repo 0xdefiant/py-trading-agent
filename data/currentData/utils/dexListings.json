@@ -1,0 +1,1011 @@
+{
+    "data": [
+        {
+            "num_market_pairs": "1005",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.43655981,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 7856639197.434831,
+                    "percent_change_volume_24h": 14.06769052,
+                    "num_transactions_24h": 6466004
+                }
+            ],
+            "id": 6706,
+            "name": "PancakeSwap v3 (BSC)",
+            "slug": "pancakeswap-v3",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "72",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.11803545,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 2124249534.9543135,
+                    "percent_change_volume_24h": -14.45690367,
+                    "num_transactions_24h": 24755749
+                }
+            ],
+            "id": 12062,
+            "name": "PumpSwap",
+            "slug": "pumpswap",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "29",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.07455520,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 1341748099.7262895,
+                    "percent_change_volume_24h": -37.43980501,
+                    "num_transactions_24h": 7446
+                }
+            ],
+            "id": 7808,
+            "name": "BaseSwap",
+            "slug": "baseswap",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "344",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.03155753,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 567931703.5202371,
+                    "percent_change_volume_24h": -8.24732663,
+                    "num_transactions_24h": 625399
+                }
+            ],
+            "id": 9391,
+            "name": "Uniswap v2 (Base)",
+            "slug": "uniswap-v2-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "161",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.02777222,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 499808562.6577341,
+                    "percent_change_volume_24h": 35.19559788,
+                    "num_transactions_24h": 239685
+                }
+            ],
+            "id": 10023,
+            "name": "Aerodrome SlipStream",
+            "slug": "aerodrome-slipstream",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "842",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.02718236,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 489193030.638812,
+                    "percent_change_volume_24h": 42.19413423,
+                    "num_transactions_24h": 113168
+                }
+            ],
+            "id": 1348,
+            "name": "Uniswap v3 (Ethereum)",
+            "slug": "uniswap-v3",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "223",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.02581901,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 464657161.29519665,
+                    "percent_change_volume_24h": 78.11513243,
+                    "num_transactions_24h": 22415
+                }
+            ],
+            "id": 11955,
+            "name": "Uniswap v4 (Ethereum)",
+            "slug": "uniswap-v4",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "265",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.02373761,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 427198877.34808236,
+                    "percent_change_volume_24h": -21.23071607,
+                    "num_transactions_24h": 538821
+                }
+            ],
+            "id": 6444,
+            "name": "Uniswap v3 (BSC)",
+            "slug": "uniswap-bsc",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "1885",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.02355905,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 423985262.58797795,
+                    "percent_change_volume_24h": 0.13985624,
+                    "num_transactions_24h": 1145310
+                }
+            ],
+            "id": 1344,
+            "name": "PancakeSwap v2 (BSC)",
+            "slug": "pancakeswap-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "973",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.01973025,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 355079577.8259072,
+                    "percent_change_volume_24h": 15.46118736,
+                    "num_transactions_24h": 1018085
+                }
+            ],
+            "id": 9882,
+            "name": "Meteora DLMM",
+            "slug": "meteora-dlmm",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "1020",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.01891021,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 340321505.25767875,
+                    "percent_change_volume_24h": 13.03301819,
+                    "num_transactions_24h": 824226
+                }
+            ],
+            "id": 1426,
+            "name": "Orca",
+            "slug": "orca",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "239",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.01848776,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 332718821.2828811,
+                    "percent_change_volume_24h": 43.28657979,
+                    "num_transactions_24h": 261273
+                }
+            ],
+            "id": 1478,
+            "name": "Uniswap v3 (Arbitrum)",
+            "slug": "uniswap-v3-arbitrum",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "8",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.01609971,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 289741740.9248271,
+                    "percent_change_volume_24h": -6.76149252,
+                    "num_transactions_24h": 1840
+                }
+            ],
+            "id": 8183,
+            "name": "PancakeSwap v2 (Base)",
+            "slug": "pancakeswap-v2-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "567",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.01548431,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 278666678.13607407,
+                    "percent_change_volume_24h": 9.96947137,
+                    "num_transactions_24h": 2290220
+                }
+            ],
+            "id": 10557,
+            "name": "Raydium (CLMM)",
+            "slug": "raydium-clmm",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "564",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.01335831,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 240405572.58907688,
+                    "percent_change_volume_24h": 64.86901088,
+                    "num_transactions_24h": 748793
+                }
+            ],
+            "id": 7791,
+            "name": "Uniswap v3 (Base)",
+            "slug": "uniswap-v3-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "158",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.01276960,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 229810838.90765336,
+                    "percent_change_volume_24h": 35.62654103,
+                    "num_transactions_24h": 6882
+                }
+            ],
+            "id": 1063,
+            "name": "Curve (Ethereum)",
+            "slug": "curve-finance",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "0",
+            "last_updated": "2022-11-08T08:15:00.000Z",
+            "market_share": 0.01148819,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2022-11-08T08:15:00.000Z",
+                    "volume_24h": 206749652.92770037,
+                    "percent_change_volume_24h": 0,
+                    "num_transactions_24h": 0
+                }
+            ],
+            "id": 5112,
+            "name": "1:0xe64608e223433e8a03a1daaefd8cb638c14b552c(deprecated)",
+            "slug": "1-0xe64608e223433e8a03a1daaefd8cb638c14b552c",
+            "status": "inactive"
+        },
+        {
+            "num_market_pairs": "101",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00926247,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 166694007.74238327,
+                    "percent_change_volume_24h": 31.94936871,
+                    "num_transactions_24h": 333675
+                }
+            ],
+            "id": 8181,
+            "name": "Pancakeswap v3 (Base)",
+            "slug": "pancakeswapv3-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "416",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00819174,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 147424277.11023116,
+                    "percent_change_volume_24h": 8.9330654,
+                    "num_transactions_24h": 189671
+                }
+            ],
+            "id": 9883,
+            "name": "Meteora DAMM",
+            "slug": "meteora-damm",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "1389",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00811126,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 145976021.80840784,
+                    "percent_change_volume_24h": 15.99125654,
+                    "num_transactions_24h": 5294544
+                }
+            ],
+            "id": 1342,
+            "name": "Raydium",
+            "slug": "raydium",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "20",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00677522,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 121931654.36242811,
+                    "percent_change_volume_24h": 95.70072941,
+                    "num_transactions_24h": 2626
+                }
+            ],
+            "id": 8964,
+            "name": "SushiSwap v2 (Base)",
+            "slug": "sushiswap-v2-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "1309",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00554562,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 99802943.76295851,
+                    "percent_change_volume_24h": 27.39555797,
+                    "num_transactions_24h": 129874
+                }
+            ],
+            "id": 1069,
+            "name": "Uniswap v2",
+            "slug": "uniswap-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "294",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00543036,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 97728547.34725125,
+                    "percent_change_volume_24h": 0.66667406,
+                    "num_transactions_24h": 1158490
+                }
+            ],
+            "id": 10403,
+            "name": "Raydium (CPMM)",
+            "slug": "raydium-cpmm",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "38",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00386072,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 69480291.81910837,
+                    "percent_change_volume_24h": 21.52455077,
+                    "num_transactions_24h": 141187
+                }
+            ],
+            "id": 12114,
+            "name": "Bluefin",
+            "slug": "bluefin-dex",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "137",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00298539,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 53727173.56832964,
+                    "percent_change_volume_24h": 66.60995044,
+                    "num_transactions_24h": 199867
+                }
+            ],
+            "id": 6993,
+            "name": "Cetus",
+            "slug": "cetus",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "96",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00289111,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 52030375.82083792,
+                    "percent_change_volume_24h": 67.57264448,
+                    "num_transactions_24h": 70818
+                }
+            ],
+            "id": 11953,
+            "name": "Uniswap v4 (BSC)",
+            "slug": "uniswap-v4-bsc",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "62",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00275899,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 49652770.28084228,
+                    "percent_change_volume_24h": 15.0366851,
+                    "num_transactions_24h": 157271
+                }
+            ],
+            "id": 7930,
+            "name": "PancakeSwap v3 (Arbitrum)",
+            "slug": "pancake-v3-arbitrum",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "0",
+            "last_updated": "2025-07-03T00:20:00.000Z",
+            "market_share": 0.00259778,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:20:00.000Z",
+                    "volume_24h": 46751510.9260599,
+                    "percent_change_volume_24h": 23.39512068,
+                    "num_transactions_24h": 3621
+                }
+            ],
+            "id": 7520,
+            "name": "SunSwap V3",
+            "slug": "47-tthjt8zajzjmhcesch7zwknp5buvzqys9x",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "38",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00249832,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 44961622.50702657,
+                    "percent_change_volume_24h": 40.98470063,
+                    "num_transactions_24h": 35050
+                }
+            ],
+            "id": 1510,
+            "name": "Rhea Finance",
+            "slug": "ref-finance",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "41",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00248833,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 44781683.64090736,
+                    "percent_change_volume_24h": 80.86446319,
+                    "num_transactions_24h": 31675
+                }
+            ],
+            "id": 8989,
+            "name": "Pharaoh Exchange",
+            "slug": "pharaoh-exchange",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "5",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00243797,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 43875442.79928991,
+                    "percent_change_volume_24h": 34.10130604,
+                    "num_transactions_24h": 75093
+                }
+            ],
+            "id": 11911,
+            "name": "HyperSwap v3",
+            "slug": "hyperswap-v3",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "36",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00230746,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 41526671.16490508,
+                    "percent_change_volume_24h": 164.7461744,
+                    "num_transactions_24h": 17431
+                }
+            ],
+            "id": 10348,
+            "name": "LFJ v2.2 (Avalanche)",
+            "slug": "trader-joe-v2-2-avalanche",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "39",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00230059,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 41402975.23693869,
+                    "percent_change_volume_24h": 45.93570906,
+                    "num_transactions_24h": 54586
+                }
+            ],
+            "id": 7806,
+            "name": "SushiSwap v3 (Base)",
+            "slug": "sushiswap-v3-base",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "81",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00229812,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 41358588.09677871,
+                    "percent_change_volume_24h": 28.91131823,
+                    "num_transactions_24h": 109325
+                }
+            ],
+            "id": 7475,
+            "name": "Camelot v3",
+            "slug": "camelot-v3",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "292",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00227254,
+            "type": "Swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 40898207.20555572,
+                    "percent_change_volume_24h": 30.84488777,
+                    "num_transactions_24h": 203713
+                }
+            ],
+            "id": 1567,
+            "name": "Uniswap v3 (Polygon)",
+            "slug": "uniswap-v3-polygon",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "0",
+            "last_updated": "2023-03-29T08:05:00.000Z",
+            "market_share": 0.00197725,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2023-03-29T08:05:00.000Z",
+                    "volume_24h": 35584005.8656867,
+                    "percent_change_volume_24h": 0,
+                    "num_transactions_24h": 99031
+                }
+            ],
+            "id": 6434,
+            "name": "16:whirlbmiicvdio4qvufm5kag6ct8vwpyzgff3uctycc",
+            "slug": "whirlbmiicvdio4qvufm5kag6ct8vwpyzgff3uctycc",
+            "status": "inactive"
+        },
+        {
+            "num_market_pairs": "275",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00175958,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 31666656.47334068,
+                    "percent_change_volume_24h": 101.28317131,
+                    "num_transactions_24h": 230310
+                }
+            ],
+            "id": 8521,
+            "name": "Aerodrome Finance",
+            "slug": "aerodrome-finance",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "79",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00162806,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 29299793.4550222,
+                    "percent_change_volume_24h": -3.90159641,
+                    "num_transactions_24h": 49019
+                }
+            ],
+            "id": 11950,
+            "name": "Uniswap v4 (Arbitrum)",
+            "slug": "uniswap-v4-arbitrum",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "20",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00145682,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 26217878.60830862,
+                    "percent_change_volume_24h": 34.33116992,
+                    "num_transactions_24h": 44443
+                }
+            ],
+            "id": 11569,
+            "name": "Shadow Exchange",
+            "slug": "shadow-exchange",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "60",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00108082,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 19451254.20206279,
+                    "percent_change_volume_24h": 91.35640528,
+                    "num_transactions_24h": 30998
+                }
+            ],
+            "id": 6407,
+            "name": "THENA FUSION",
+            "slug": "thena-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "336",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00096919,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 17442151.65058521,
+                    "percent_change_volume_24h": 1858.25917327,
+                    "num_transactions_24h": 332875
+                }
+            ],
+            "id": 1293,
+            "name": "QuickSwap",
+            "slug": "quickswap",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "118",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00095986,
+            "type": "swap",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 17274386.34603444,
+                    "percent_change_volume_24h": 7.84482702,
+                    "num_transactions_24h": 71566
+                }
+            ],
+            "id": 4098,
+            "name": "QuickSwap v3 (Polygon)",
+            "slug": "quickswap-v3",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "39",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00074399,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 13389421.00016655,
+                    "percent_change_volume_24h": 76.58613529,
+                    "num_transactions_24h": 2654
+                }
+            ],
+            "id": 6707,
+            "name": "PancakeSwap v3 (Ethereum)",
+            "slug": "pancakeswap-v3-eth",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "55",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00073452,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 13218943.92236858,
+                    "percent_change_volume_24h": 19.19080717,
+                    "num_transactions_24h": 47696
+                }
+            ],
+            "id": 11118,
+            "name": "Turbos Finance",
+            "slug": "turbos",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "0",
+            "last_updated": "2023-03-29T08:05:00.000Z",
+            "market_share": 0.00069510,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2023-03-29T08:05:00.000Z",
+                    "volume_24h": 12509548.04788797,
+                    "percent_change_volume_24h": 0,
+                    "num_transactions_24h": 8901
+                }
+            ],
+            "id": 6068,
+            "name": "14:0xafd89d21bdb66d00817d4153e055830b1c2b3970",
+            "slug": "0xafd89d21bdb66d00817d4153e055830b1c2b3970",
+            "status": "inactive"
+        },
+        {
+            "num_market_pairs": "34",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00067950,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 12228846.31011256,
+                    "percent_change_volume_24h": 37.12670127,
+                    "num_transactions_24h": 260156
+                }
+            ],
+            "id": 7342,
+            "name": "PulseX v2",
+            "slug": "pulsex-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "16",
+            "last_updated": "2025-07-03T00:23:14.000Z",
+            "market_share": 0.00065037,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:14.000Z",
+                    "volume_24h": 11704574.72805971,
+                    "percent_change_volume_24h": 52.76238101,
+                    "num_transactions_24h": 16164
+                }
+            ],
+            "id": 7066,
+            "name": "Ramses v2",
+            "slug": "ramses-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "66",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00060993,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 10976651.36920825,
+                    "percent_change_volume_24h": -11.8610127,
+                    "num_transactions_24h": 1456
+                }
+            ],
+            "id": 1404,
+            "name": "Balancer v2 (Ethereum)",
+            "slug": "balancer-v2",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "32",
+            "last_updated": "2025-07-03T00:23:13.000Z",
+            "market_share": 0.00054674,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2025-07-03T00:23:13.000Z",
+                    "volume_24h": 9839581.17599573,
+                    "percent_change_volume_24h": 60.90532694,
+                    "num_transactions_24h": 75735
+                }
+            ],
+            "id": 7126,
+            "name": "PulseX",
+            "slug": "pulsex",
+            "status": "active"
+        },
+        {
+            "num_market_pairs": "0",
+            "last_updated": "2023-03-29T08:05:00.000Z",
+            "market_share": 0.00051902,
+            "type": "",
+            "quote": [
+                {
+                    "convert_id": "2781",
+                    "market_type": "spot",
+                    "last_updated": "2023-03-29T08:05:00.000Z",
+                    "volume_24h": 9340600.73053009,
+                    "percent_change_volume_24h": 0,
+                    "num_transactions_24h": 672
+                }
+            ],
+            "id": 5070,
+            "name": "14:0x505751023083bfc7d2afb0588717dcc6182e54b2",
+            "slug": "14:0x505751023083bfc7d2afb0588717dcc6182e54b2",
+            "status": "inactive"
+        }
+    ],
+    "status": {
+        "timestamp": "2025-07-03T00:25:12.369Z",
+        "error_code": "0",
+        "error_message": "",
+        "elapsed": 55,
+        "credit_count": 50
+    }
+}

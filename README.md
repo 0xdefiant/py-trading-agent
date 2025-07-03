@@ -16,12 +16,12 @@ Run the ML trading algorithm from the command line using a token folder (e.g., b
 
 ### Example: Train LSTM on Bitcoin
 ```sh
-python data/ml-trading-algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
+python data/ml_trading_algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
 ```
 
 ### Example: Train GRU on Ethereum
 ```sh
-python data/ml-trading-algo.py --token ethereum --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ethereum_gru.pth
+python data/ml_trading_algo.py --token ethereum --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ethereum_gru.pth
 ```
 
 ## CLI Options
@@ -43,35 +43,35 @@ python data/ml-trading-algo.py --token ethereum --model gru --seq-len 24 --batch
 
 # LSTM on Bitcoin
 ```sh
-python data/ml-trading-algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
+python data/ml_trading_algo.py --token bitcoin --model lstm --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model bitcoin_lstm.pth
 ```
 
 # GRU on Ripple
 ```sh
-python data/ml-trading-algo.py --token ripple --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ripple_gru.pth
+python data/ml_trading_algo.py --token ripple --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cpu --save-model ripple_gru.pth
 ```
 
 # LSTM on Ethereum (custom sequence length and epochs)
 ```sh
-python data/ml-trading-algo.py --token ethereum --model lstm --seq-len 48 --batch-size 32 --epochs 20 --lr 0.0005 --device cpu --save-model ethereum_lstm.pth
+python data/ml_trading_algo.py --token ethereum --model lstm --seq-len 48 --batch-size 32 --epochs 20 --lr 0.0005 --device cpu --save-model ethereum_lstm.pth
 ```
 
 # GRU on Uniswap (using GPU if available)
 ```sh
-python data/ml-trading-algo.py --token uniswap --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cuda --save-model uniswap_gru.pth
+python data/ml_trading_algo.py --token uniswap --model gru --seq-len 24 --batch-size 64 --epochs 10 --lr 0.001 --device cuda --save-model uniswap_gru.pth
 ```
 
 # --- Save Model Example ---
 
 # Save trained LSTM model for Aave
 ```sh
-python data/ml-trading-algo.py --token aave --model lstm --save-model aave_lstm.pth
+python data/ml_trading_algo.py --token aave --model lstm --save-model aave_lstm.pth
 ```
 
 # --- Custom Example: All-in-one ---
 # (GRU, 48-hour window, 30 epochs, batch size 128, learning rate 0.0005, save model)
 ```sh
-python data/ml-trading-algo.py --token bitcoin --model gru --seq-len 48 --batch-size 128 --epochs 30 --lr 0.0005 --save-model bitcoin_gru.pth
+python data/ml_trading_algo.py --token bitcoin --model gru --seq-len 48 --batch-size 128 --epochs 30 --lr 0.0005 --save-model bitcoin_gru.pth
 ```
 
 ## Token Examples
@@ -80,32 +80,32 @@ Below are example commands for each token available in `/data/tokenData/`:
 
 ### Bitcoin
 ```sh
-python data/ml-trading-algo.py --token bitcoin --model lstm --save-model bitcoin_lstm.pth
+python data/ml_trading_algo.py --token bitcoin --model lstm --save-model bitcoin_lstm.pth
 ```
 
 ### Ripple (XRP)
 ```sh
-python data/ml-trading-algo.py --token ripple --model gru --save-model ripple_gru.pth
+python data/ml_trading_algo.py --token ripple --model gru --save-model ripple_gru.pth
 ```
 
 ### Ethereum
 ```sh
-python data/ml-trading-algo.py --token ethereum --model lstm --save-model ethereum_lstm.pth
+python data/ml_trading_algo.py --token ethereum --model lstm --save-model ethereum_lstm.pth
 ```
 
 ### Uniswap
 ```sh
-python data/ml-trading-algo.py --token uniswap --model gru --save-model uniswap_gru.pth
+python data/ml_trading_algo.py --token uniswap --model gru --save-model uniswap_gru.pth
 ```
 
 ### Aave
 ```sh
-python data/ml-trading-algo.py --token aave --model lstm --save-model aave_lstm.pth
+python data/ml_trading_algo.py --token aave --model lstm --save-model aave_lstm.pth
 ```
 
 ### Chainlink
 ```sh
-python data/ml-trading-algo.py --token chainlink --model gru --save-model chainlink_gru.pth
+python data/ml_trading_algo.py --token chainlink --model gru --save-model chainlink_gru.pth
 ```
 
 ## Notes
@@ -117,5 +117,5 @@ python data/ml-trading-algo.py --token chainlink --model gru --save-model chainl
 - For more options, run:
 
 ```bash
-python data/ml-trading-algo.py --help
+python data/ml_trading_algo.py --help
 ```
